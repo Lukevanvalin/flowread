@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="108" fill="#18181b"/>
+  <text x="256" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="180" font-weight="700" fill="#3b82f6">F</text>
+  <rect x="120" y="280" width="272" height="6" rx="3" fill="#3b82f6" opacity="0.3"/>
+  <rect x="120" y="280" width="160" height="6" rx="3" fill="#3b82f6"/>
+  <text x="256" y="380" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" font-weight="600" fill="#a1a1aa">FlowRead</text>
+</svg>
