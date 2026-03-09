@@ -11,10 +11,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'URL is required' }, { status: 400 });
     }
 
+    // Normalize: prepend https:// if no protocol
+    let normalized = url.trim();
+    if (!/^https?:\/\//i.test(normalized)) {
+      normalized = 'https://' + normalized;
+    }
+
     // Validate URL
     let parsedUrl: URL;
     try {
-      parsedUrl = new URL(url);
+      parsedUrl = new URL(normalized);
     } catch {
       return NextResponse.json({ error: 'Invalid URL' }, { status: 400 });
     }

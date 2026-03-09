@@ -26,6 +26,14 @@ export default function InputView({ onTextReady, theme }: InputViewProps) {
     if (text.trim()) onTextReady(text.trim());
   };
 
+  const normalizeUrl = (input: string): string => {
+    let u = input.trim();
+    if (!/^https?:\/\//i.test(u)) {
+      u = 'https://' + u;
+    }
+    return u;
+  };
+
   const handleUrl = async () => {
     if (!url.trim()) return;
     setLoading(true);
@@ -34,7 +42,7 @@ export default function InputView({ onTextReady, theme }: InputViewProps) {
       const res = await fetch('/api/extract-url', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: url.trim() }),
+        body: JSON.stringify({ url: normalizeUrl(url) }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to extract text');
@@ -104,10 +112,10 @@ export default function InputView({ onTextReady, theme }: InputViewProps) {
           {mode === 'url' && (
             <>
               <input
-                type="url"
+                type="text"
                 value={url}
                 onChange={e => setUrl(e.target.value)}
-                placeholder="https://example.com/article"
+                placeholder="example.com/article or paste a full URL"
                 className={`w-full p-3 rounded-lg border ${border} ${inputBg} focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm`}
               />
               <button
